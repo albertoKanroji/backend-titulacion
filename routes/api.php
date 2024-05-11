@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomersController;
-
+use App\Http\Controllers\RutinasControllerAPI;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,4 +30,12 @@ Route::prefix('v1')->group(function () {
         // Route::put('/{id}', [CustomersController::class, 'update'])->name('usuarios.update');
         // Route::delete('/{id}', [CustomersController::class, 'destroy'])->name('usuarios.destroy');
     });
+
+    Route::prefix('rutinas')->group(function () {
+
+        Route::get('/', [RutinasControllerAPI::class, 'index'])->name('usuarios.login');
+    
+    });
+
+
 });

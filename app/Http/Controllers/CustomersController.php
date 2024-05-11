@@ -17,6 +17,7 @@ class CustomersController extends Controller
             'apellido2' => 'required|string',
             'correo' => 'required|email|unique:customers',
             'password' => 'required|string|min:6',
+           
         ]);
 
         if ($validator->fails()) {
