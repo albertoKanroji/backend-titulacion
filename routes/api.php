@@ -33,7 +33,9 @@ Route::prefix('v1')->group(function () {
 
     Route::prefix('rutinas')->group(function () {
 
-        Route::get('/', [RutinasControllerAPI::class, 'index'])->name('usuarios.login');
+        Route::get('/', [RutinasControllerAPI::class, 'index']);
+        Route::get('/{id}', [RutinasControllerAPI::class, 'show']);
+        Route::get('/{id}/ejercicios', [RutinasControllerAPI::class, 'showEjercicios']);
     
     });
 
