@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\RutinasControllerAPI;
+use App\Http\Controllers\GruposMuscularesControllerlAPI;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -37,6 +38,13 @@ Route::prefix('v1')->group(function () {
         Route::get('/{id}', [RutinasControllerAPI::class, 'show']);
         Route::get('/{id}/ejercicios', [RutinasControllerAPI::class, 'showEjercicios']);
     
+    });
+    Route::prefix('grupos-musculares')->group(function () {
+
+        Route::get('/', [GruposMuscularesControllerlAPI::class, 'index']);
+         Route::get('/{id}', [GruposMuscularesControllerlAPI::class, 'show']);
+        Route::get('/{id}/video', [GruposMuscularesControllerlAPI::class, 'showVideos']);
+        Route::get('/video/{id}', [GruposMuscularesControllerlAPI::class, 'showVideoDetail']);
     });
 
 
