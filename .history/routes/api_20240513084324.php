@@ -22,6 +22,7 @@ header('Access-Control-Allow-Headers: Accept, Content-Type, X-Auth-Token, Origin
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['middleware' => ['cors']], function () {
     Route::prefix('v1')->group(function () {
 
         Route::prefix('usuarios')->group(function () {
@@ -48,4 +49,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
             Route::get('/video/{id}', [GruposMuscularesControllerlAPI::class, 'showVideoDetail']);
         });
     });
-
+});
