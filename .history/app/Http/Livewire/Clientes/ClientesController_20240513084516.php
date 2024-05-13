@@ -12,7 +12,7 @@ class ClientesController extends Component
 
     public function mount()
     {
-
+        
         $this->clientes = Customers::all();
     }
     public function irACrearCliente()
