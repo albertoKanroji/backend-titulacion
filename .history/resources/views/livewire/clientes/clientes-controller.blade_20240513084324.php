@@ -56,10 +56,6 @@
                                                 data-toggle="tooltip" data-original-title="Edit user">
                                                 Edit
                                             </a>
-                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs"
-                                                data-toggle="tooltip"   wire:click="borrarCliente({{ $cliente->id }})" data-original-title="delete user">
-                                                Borrar
-                                            </a>
                                         </td>
                                         <!-- Agrega más columnas si es necesario -->
                                     </tr>

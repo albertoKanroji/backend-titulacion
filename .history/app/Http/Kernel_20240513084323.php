@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http;
-
 use Fruitcake\Cors\HandleCors;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -16,14 +15,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\TrustProxies::class,
-
+        \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-
+       
     ];
 
     /**
@@ -45,7 +43,6 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Illuminate\Http\Middleware\HandleCors::class,
             HandleCors::class,
         ],
     ];
@@ -67,6 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        "cors" => \App\Http\Middleware\Cors::class,
+        'cors'=> \App\Http\Middleware\Cors::class,
     ];
 }
