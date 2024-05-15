@@ -15,14 +15,13 @@ use App\Http\Controllers\GruposMuscularesControllerlAPI;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, PATCH, DELETE');
+header('Access-Control-Allow-Headers: Accept, Content-Type, X-Auth-Token, Origin, Authorization');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['middleware' => ['cors']], function () {
-
     Route::prefix('v1')->group(function () {
 
         Route::prefix('usuarios')->group(function () {
@@ -49,4 +48,4 @@ Route::group(['middleware' => ['cors']], function () {
             Route::get('/video/{id}', [GruposMuscularesControllerlAPI::class, 'showVideoDetail']);
         });
     });
-});
+
