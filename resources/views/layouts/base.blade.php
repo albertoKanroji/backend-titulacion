@@ -9,17 +9,9 @@
     <x-demo-metas></x-demo-metas>
     @endif
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-<<<<<<< HEAD
-    <link rel="icon" type="image/png"
-        href="https://firebasestorage.googleapis.com/v0/b/infinitytech-15a41.appspot.com/o/Logo-min.png?alt=media&token=0e8916f3-607a-48a0-af25-a60ffe88b5d2">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <title>
-        Infinity-Tech Admin
-=======
-    <link rel="icon" type="image/png" href="https://firebasestorage.googleapis.com/v0/b/infinitytech-15a41.appspot.com/o/Logo-min.png?alt=media&token=0e8916f3-607a-48a0-af25-a60ffe88b5d2">
-    <title>
-        
-    Infinity-Tech
->>>>>>> b4f13b76d82b1b2ef20e7d346b4ba5d19270049e
+        Soft UI Dashboard by Creative Tim
     </title>
     <!-- Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
