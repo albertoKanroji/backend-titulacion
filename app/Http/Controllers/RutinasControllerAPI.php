@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customers;
 use Illuminate\Http\Request;
 use App\Models\Rutinas;
+use Illuminate\Support\Facades\Log;
 
 class RutinasControllerAPI extends Controller
 {
@@ -11,7 +13,7 @@ class RutinasControllerAPI extends Controller
     public function index()
     {
         // Obtener todas las rutinas
-        $rutinas = Rutinas::all();
+        $rutinas = Rutinas::where('estado','publica')->get();
 
         // Retornar las rutinas como respuesta JSON
         return response()->json([
@@ -59,5 +61,30 @@ class RutinasControllerAPI extends Controller
             'success' => true,
             'data' => $ejercicios
         ]);
+    }
+    public function obtenerRutinasPersonalizadas($clienteId)
+    {
+        try {
+            // Buscar al cliente por su ID
+            $cliente = Customers::find($clienteId);
+
+            if (!$cliente) {
+                return response()->json(['message' => 'Cliente no encontrado'], 404);
+            }
+
+            // Obtener las rutinas personalizadas del cliente
+            $rutinasPersonalizadas = $cliente->rutinas()->get();
+
+            return response()->json([
+                'message' => 'Rutinas personalizadas obtenidas correctamente',
+                'data' => $rutinasPersonalizadas
+            ], 200);
+        } catch (\Exception $e) {
+            // Registrar el error en el log de la aplicación
+            Log::error('Error al obtener las rutinas personalizadas: ' . $e->getMessage());
+
+            // Retornar una respuesta de error en formato JSON
+            return response()->json(['message' => 'Error al obtener las rutinas personalizadas'], 500);
+        }
     }
 }

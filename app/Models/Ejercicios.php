@@ -14,7 +14,8 @@ class Ejercicios extends Model
         'imagen',
         'descripcion',
         'rutina_id',
-        'status'
+        'status',
+        'tipo'
 
 
     ];

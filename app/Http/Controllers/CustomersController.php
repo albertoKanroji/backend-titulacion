@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ejercicios;
+use App\Models\RespuestaOpcion;
+use App\Models\Rutinas;
 use Illuminate\Http\Request;
 use App\Models\Customers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -201,9 +205,10 @@ class CustomersController extends Controller
                 $altura = $request->input('altura') / 100; // Convertimos la altura a metros
                 $cliente->IMC = round($peso / ($altura * $altura), 2);
             }
-            $cliente->profileIsComplete='si';
+            $cliente->profileIsComplete = 'si';
 
             $cliente->save();
+
 
             return response()->json([
                 'success' => true,
@@ -220,6 +225,4 @@ class CustomersController extends Controller
             ], 500);
         }
     }
-
-
 }

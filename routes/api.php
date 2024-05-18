@@ -43,6 +43,8 @@ Route::group(['middleware' => ['cors']], function () {
             Route::get('/', [RutinasControllerAPI::class, 'index']);
             Route::get('/{id}', [RutinasControllerAPI::class, 'show']);
             Route::get('/{id}/ejercicios', [RutinasControllerAPI::class, 'showEjercicios']);
+            Route::get('/clientes/{clienteId}/rutinas-personalizadas', [RutinasControllerAPI::class, 'obtenerRutinasPersonalizadas']);
+
         });
         Route::prefix('questions')->group(function () {
 
