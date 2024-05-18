@@ -15,7 +15,21 @@ class Customers extends Model
         'apellido2',
         'correo',
         'password',
-        'status'
+        'status',
+        'rutina',
+        'profileIsComplete',
+        'peso',
+        'altura',
+        'IMC'
 
     ];
+    public function rutinas()
+    {
+        return $this->belongsToMany(Rutinas::class, 'rutinas_clientes', 'customers_id', 'rutinas_id');
+    }
+
+    public function respuestas()
+    {
+        return $this->hasMany(Respuesta::class, 'customers_id');
+    }
 }

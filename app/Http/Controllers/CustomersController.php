@@ -17,7 +17,7 @@ class CustomersController extends Controller
             'apellido2' => 'required|string',
             'correo' => 'required|email|unique:customers',
             'password' => 'required|string|min:6',
-           
+
         ]);
 
         if ($validator->fails()) {
@@ -118,4 +118,108 @@ class CustomersController extends Controller
         // Por ejemplo, puedes utilizar una combinación de su ID y una cadena aleatoria
         return md5($cliente->id . '_' . uniqid());
     }
+    public function getData(Request $request)
+    {
+        try {
+            // Obtener el ID del cliente desde la solicitud
+            $clienteId = $request->input('clienteId');
+
+            // Buscar al cliente por su ID
+            $cliente = Customers::find($clienteId);
+
+            // Verificar si se encontró al cliente
+            if (!$cliente) {
+                return response()->json([
+                    'success' => false,
+                    'status' => 404,
+                    'message' => 'Cliente no encontrado',
+                    'data' => null
+                ], 404);
+            }
+
+            // Devolver la información del cliente
+            return response()->json([
+                'success' => true,
+                'status' => 200,
+                'message' => 'Información del cliente obtenida correctamente',
+                'data' => $cliente
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'status' => 500,
+                'message' => 'Error al obtener la información del cliente: ' . $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string',
+            'apellido' => 'required|string',
+            'apellido2' => 'required|string',
+            'correo' => 'required|email|unique:customers,correo,' . $id,
+            'peso' => 'nullable|numeric',
+            'altura' => 'nullable|numeric',
+            'rutina' => 'nullable|string',
+            'profileIsComplete' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'status' => 422,
+                'message' => 'Error de validación',
+                'data' => $validator->errors()
+            ], 422);
+        }
+
+        try {
+            $cliente = Customers::find($id);
+
+            if (!$cliente) {
+                return response()->json([
+                    'success' => false,
+                    'status' => 404,
+                    'message' => 'Cliente no encontrado',
+                    'data' => null
+                ], 404);
+            }
+
+            $cliente->nombre = $request->input('nombre');
+            $cliente->apellido = $request->input('apellido');
+            $cliente->apellido2 = $request->input('apellido2');
+            $cliente->correo = $request->input('correo');
+            $cliente->rutina = $request->input('rutina');
+            $cliente->profileIsComplete = $request->input('profileIsComplete');
+            $cliente->peso = $request->input('peso');
+            $cliente->altura = $request->input('altura');
+
+            if ($request->input('peso') && $request->input('altura')) {
+                $peso = $request->input('peso');
+                $altura = $request->input('altura') / 100; // Convertimos la altura a metros
+                $cliente->IMC = round($peso / ($altura * $altura), 2);
+            }
+            $cliente->profileIsComplete='si';
+
+            $cliente->save();
+
+            return response()->json([
+                'success' => true,
+                'status' => 200,
+                'message' => 'Cliente actualizado correctamente',
+                'data' => $cliente
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'status' => 500,
+                'message' => 'Error al actualizar el cliente: ' . $e->getMessage(),
+                'data' => null
+            ], 500);
+        }
+    }
+
+
 }

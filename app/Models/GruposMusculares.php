@@ -14,11 +14,15 @@ class GruposMusculares extends Model
         'nombre',
         'imagen',
         'descripcion',
-        
+
 
     ];
     public function videos(): HasMany
     {
         return $this->hasMany(GruposMuscularesVideos::class, 'gm_id'); // Ajusta el nombre de la clave foránea según corresponda en tu base de datos
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'tags_grupos_musculares', 'grupos_musculares_id', 'tags_id');
     }
 }

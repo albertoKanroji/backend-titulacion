@@ -15,12 +15,15 @@ class Ejercicios extends Model
         'descripcion',
         'rutina_id',
         'status'
-        
+
 
     ];
     public function rutina()
     {
         return $this->belongsTo(Rutinas::class, 'rutina_id');
     }
-    
+    public function videos()
+    {
+        return $this->belongsToMany(VideoGM::class, 'videos_ejercicios', 'ejercicios_id', 'videos_gm_id');
+    }
 }
