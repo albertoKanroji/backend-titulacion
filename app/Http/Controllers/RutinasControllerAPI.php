@@ -13,7 +13,7 @@ class RutinasControllerAPI extends Controller
     public function index()
     {
         // Obtener todas las rutinas
-        $rutinas = Rutinas::where('estado','publica')->get();
+        $rutinas = Rutinas::where('estado', 'publica')->get();
 
         // Retornar las rutinas como respuesta JSON
         return response()->json([

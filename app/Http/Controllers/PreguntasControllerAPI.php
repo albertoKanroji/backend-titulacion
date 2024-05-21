@@ -18,7 +18,7 @@ class PreguntasControllerAPI extends Controller
     {
         try {
             // Traer todas las preguntas con sus opciones de respuesta
-            $preguntas = Pregunta::with('respuestasOpciones.respuestas')->get();
+            $preguntas = Pregunta::with('respuestasOpciones')->get();
 
             // Retornar la respuesta en formato JSON
             return response()->json($preguntas, 200);

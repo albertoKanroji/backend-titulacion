@@ -18,6 +18,8 @@ use App\Http\Livewire\LaravelExamples\UserProfile;
 use App\Http\Livewire\LaravelExamples\UserManagement;
 use App\Http\Livewire\Clientes\CrearClientesController;
 use Illuminate\Http\Request;
+use App\Http\Livewire\Rutinas\RutinasController;
+use App\Http\Livewire\Rutinas\RutinasPersonalizadaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     return redirect('/login');
 });
 
@@ -39,11 +41,13 @@ Route::get('/login', Login::class)->name('login');
 
 Route::get('/login/forgot-password', ForgotPassword::class)->name('forgot-password');
 
-Route::get('/reset-password/{id}',ResetPassword::class)->name('reset-password')->middleware('signed');
+Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')->middleware('signed');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/clientes', ClientesController::class)->name('clientes');
+    Route::get('/rutinas-publicas', RutinasController::class)->name('rutinas-publicas');
+    Route::get('/rutinas-perzonalizada', RutinasPersonalizadaController::class)->name('rutinas-perzonalizada');
     Route::get('/clientes-crear', CrearClientesController::class)->name('clientes-crear');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');
@@ -54,4 +58,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/laravel-user-profile', UserProfile::class)->name('user-profile');
     Route::get('/laravel-user-management', UserManagement::class)->name('user-management');
 });
-

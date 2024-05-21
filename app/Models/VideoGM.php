@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VideoGM extends Model
 {
     use HasFactory;
+    protected $table = 'videos_gm';
     public function grupoMuscular()
     {
         return $this->belongsTo(GrupoMuscular::class, 'gm_id');
