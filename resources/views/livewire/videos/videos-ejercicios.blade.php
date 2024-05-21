@@ -5,9 +5,8 @@
                 <div class="card mb-4">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <h6>Grupos Musculares</h6>
-                            <button class="btn btn-primary" wire:click="irACrearCliente()">Agregar Grupo
-                                Muscular</button>
+                            <h6>Videos</h6>
+                            <button class="btn btn-primary" wire:click="irACrearCliente()">Agregar Rutina</button>
 
                         </div>
                     </div>
@@ -21,7 +20,9 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Nombre</th>
 
-
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Grupo musuclar</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Acciones</th>
@@ -48,7 +49,12 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td class="align-middle text-center text-sm">
 
+                                            <span class="badge badge-sm bg-gradient-success">{{ $video->grupoMuscular
+                                                }}</span>
+
+                                        </td>
 
                                         <td class="align-middle text-center text-sm">
                                             <a href="javascript:;" class="text-secondary font-weight-bold text-xs"

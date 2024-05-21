@@ -5,9 +5,8 @@
                 <div class="card mb-4">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <h6>Grupos Musculares</h6>
-                            <button class="btn btn-primary" wire:click="irACrearCliente()">Agregar Grupo
-                                Muscular</button>
+                            <h6>Equipo</h6>
+                            <button class="btn btn-primary" wire:click="irACrearCliente()">Agregar Equipo</button>
 
                         </div>
                     </div>

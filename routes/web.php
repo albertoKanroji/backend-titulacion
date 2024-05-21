@@ -20,6 +20,11 @@ use App\Http\Livewire\Clientes\CrearClientesController;
 use Illuminate\Http\Request;
 use App\Http\Livewire\Rutinas\RutinasController;
 use App\Http\Livewire\Rutinas\RutinasPersonalizadaController;
+use App\Http\Livewire\Videos\VideosEjercicios;
+use App\Http\Livewire\GruposMusculares\GruposMuscularesController;
+use App\Http\Livewire\Etiquetas\Equipo\EquipoController;
+use App\Http\Livewire\Etiquetas\Tag\TagController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +51,11 @@ Route::get('/reset-password/{id}', ResetPassword::class)->name('reset-password')
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/clientes', ClientesController::class)->name('clientes');
+    Route::get('/tags', TagController::class)->name('tags');
+    Route::get('/equipo', EquipoController::class)->name('equipo');
+    Route::get('/videos-todos', VideosEjercicios::class)->name('videos-todos');
     Route::get('/rutinas-publicas', RutinasController::class)->name('rutinas-publicas');
+    Route::get('/grupos-musculares', GruposMuscularesController::class)->name('grupos-musculares');
     Route::get('/rutinas-perzonalizada', RutinasPersonalizadaController::class)->name('rutinas-perzonalizada');
     Route::get('/clientes-crear', CrearClientesController::class)->name('clientes-crear');
     Route::get('/billing', Billing::class)->name('billing');
