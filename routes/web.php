@@ -24,7 +24,7 @@ use App\Http\Livewire\Videos\VideosEjercicios;
 use App\Http\Livewire\GruposMusculares\GruposMuscularesController;
 use App\Http\Livewire\Etiquetas\Equipo\EquipoController;
 use App\Http\Livewire\Etiquetas\Tag\TagController;
-
+use App\Http\Livewire\GruposMusculares\GrupoMuscularCrear;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/rutinas-publicas', RutinasController::class)->name('rutinas-publicas');
     Route::get('/grupos-musculares', GruposMuscularesController::class)->name('grupos-musculares');
     Route::get('/rutinas-perzonalizada', RutinasPersonalizadaController::class)->name('rutinas-perzonalizada');
-    Route::get('/clientes-crear', CrearClientesController::class)->name('clientes-crear');
+    Route::get('/clientes-crear/{id?}', CrearClientesController::class)->name('clientes-crear');
+    Route::get('/gm-crear/{id?}', GrupoMuscularCrear::class)->name('gm-crear');
     Route::get('/billing', Billing::class)->name('billing');
     Route::get('/profile', Profile::class)->name('profile');
     Route::get('/tables', Tables::class)->name('tables');

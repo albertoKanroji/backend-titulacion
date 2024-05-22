@@ -19,6 +19,10 @@ class ClientesController extends Component
     {
         return redirect()->route('clientes-crear');
     }
+    public function editCliente($id)
+    {
+        return redirect()->route('clientes-crear', ['id' => $id]);
+    }
     public function render()
     {
         return view('livewire.clientes.clientes-controller');

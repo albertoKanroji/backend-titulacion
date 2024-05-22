@@ -54,7 +54,7 @@ class RutinasControllerAPI extends Controller
         }
 
         // Obtener todos los ejercicios asociados a la rutina
-        $ejercicios = $rutina->ejercicios;
+        $ejercicios = $rutina->videos;
 
         // Retornar los ejercicios como respuesta JSON
         return response()->json([

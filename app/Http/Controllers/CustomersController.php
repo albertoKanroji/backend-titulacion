@@ -78,7 +78,7 @@ class CustomersController extends Controller
                 'data' => $validator->errors()
             ], 422);
         }
-
+        //122344 =dkjfhjghkdhfghdgeruihg == dkjfhjghkdhfghdgeruihg
         try {
             // Buscar al cliente por su correo electrónico
             $cliente = Customers::where('correo', $request->correo)->first();

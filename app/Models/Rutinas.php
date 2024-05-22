@@ -31,4 +31,8 @@ class Rutinas extends Model
     {
         return $this->belongsToMany(Customers::class, 'rutinas_clientes', 'rutinas_id', 'customers_id');
     }
+    public function videos()
+    {
+        return $this->belongsToMany(VideoGM::class, 'rutinas_ejercicios', 'rutinas_id', 'videos_gm_id');
+    }
 }

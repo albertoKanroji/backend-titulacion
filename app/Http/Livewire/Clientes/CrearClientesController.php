@@ -24,16 +24,35 @@ class CrearClientesController extends Component
         'cliente.apellido2' => 'min:5',
         'cliente.password' => 'min:5',
         'cliente.status' => 'min:1',
-     
+
     ];
+    public function mount($id = null)
+    {
+        $this->status = "select";
+        if ($id) {
+            $this->cliente = Customers::findOrFail($id);
+            // Remove the unique validation rule for the email field
+            $this->rules['cliente.correo'] = 'required|email|min:8|unique:customers,correo,' . $id;
+        } else {
+            $this->cliente = new Customers();
+        }
+    }
+
     public function save()
     {
         if (env('IS_DEMO')) {
             $this->showDemoNotification = true;
         } else {
             $this->validate();
-            $this->cliente->irACrearCliente();
-            $this->showSuccesNotification = true;
+
+            if ($this->cliente->exists) {
+                $this->cliente->update();
+                $this->showSuccesNotification = true;
+            } else {
+                $this->cliente->password = Hash::make($this->cliente->password);
+                $this->cliente->save();
+                $this->showSuccesNotification = true;
+            }
         }
     }
     // Propiedades para almacenar los datos del cliente
@@ -43,11 +62,7 @@ class CrearClientesController extends Component
     public $correo;
     public $password;
     public $status;
-    public function mount()
-    {
-        $this->cliente = new Customers();
-        $this->status="select";
-    }
+
 
     // Función para crear un nuevo cliente
 
